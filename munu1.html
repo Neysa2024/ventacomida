@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras Adaptable</title>
+    <link rel="stylesheet" href="estilos/estilos.css">
+    <link rel="stylesheet" href="estilos/carrito.css">
+    
+</head>
+<body>
+
+   <section class="menu1">
+    <section> <div class="cart-icon" onclick="toggleCart()">
+        🛒<span id="cart-count">0</span>
+    </div>
+    
+    <div class="cart-modal" id="cart-modal">
+        <h3>Tu Carrito</h3>
+        <table class="cart-table" id="cart-items">
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Acciones</th>
+            </tr>
+        </table>
+        <button class="empty-cart-btn" onclick="emptyCart()">Vaciar Carrito</button>
+    </div>
+    <section class="inicio"><header>
+        <div class="logo">
+            <h1>RESTAURANTE</h1>
+            <center><p>COMIDA TIPICA BOLIVIA</p></center>
+        </div>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">INICIO</a></li>
+                    <li><a href="munu1.html">MENUS</a></li>
+                    <li><a href="nosotros.html">NOSOTROS</a></li>
+                    <li><a href="reserva.html">RESERVA ONLINE</a></li>
+                    <li><a href="localidad.html">COCALIDAD</a></li>
+                    <li><a href="contactos.html">CONTACTANOS</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header></section>
+    
+        <h1 style="text-align:center;"><center><h2>PATOS DE HOY</h2></center></h1>
+        <div class="container">
+            <div class="course">
+                <img src="imagen/chairo.jpg" alt=>
+                <h2>CHAIRO</h2>
+                <p class="price">$20</p>
+                <p class="discount-price">$15</p>
+                <button onclick="addToCart('CHAIRO', 15, 'imagen/chairo.jpg')">Agregar al Carrito</button>
+            </div>
+    
+            <div class="course">
+                <img src="imagen/charque.PNG" alt="CHARQUE">
+                <h2>CHARQUE</h2>
+                <p class="price">$30</p>
+                <p class="discount-price">$10</p>
+                <button onclick="addToCart('CHARQUE', 15, 'imagen/charque.PNG')">Agregar al Carrito</button>
+            </div>
+            <div class="course">
+                <img src="imagen/chajchu.jpg" alt="CHAJCHU">
+                <h2>CHAJCHU</h2>
+                <p class="price">$20</p>
+                <p class="discount-price">$10</p>
+                <button onclick="addToCart('CHAJCHU', 15, 'imagen/chajchu.jpg')">Agregar al Carrito</button>
+            </div>
+            <div class="course">
+                <img src="imagen/giso de zapallo.png" alt="GISOS">
+                <h2>GISOS</h2>
+                <p class="price">$20</p>
+                <p class="discount-price">$15</p>
+                <button onclick="addToCart('GISOS', 15, 'imagen/giso de zapallo.png')">Agregar al Carrito</button>
+            </div>
+            <div class="course">
+                <img src="imagen/plato Paceño.jpg" alt="PLATO PACEÑO">
+                <h2>PLATO PACEÑO</h2>
+                <p class="price">$20</p>
+                <p class="discount-price">$25</p>
+                <button onclick="addToCart('PLATO PACEÑO', 15, 'imagen/plato Paceño.jpg')">Agregar al Carrito</button>
+            </div>
+            <div class="course">
+                <img src="imagen/silpancho.jpg" alt="SILPANCHO">
+                <h2>SILPANCHO</h2>
+                <p class="price">$20</p>
+                <p class="discount-price">$18</p>
+                <button onclick="addToCart('SILPANCHO', 15, 'imagen/silpancho.jpg')">Agregar al Carrito</button>
+            </div>
+            <div class="course">
+                <img src="imagen/sopa de quinua.jpg" alt="SOPA DE QUINUA">
+                <h2>SOPA DE QUINUA</h2>
+                <p class="price">$20</p>
+                <p class="discount-price">$1</p>
+                <button onclick="addToCart('SOPA DE QUINUA', 15, 'imagen/sopa de quinua.jpg')">Agregar al Carrito</button>
+            </div>
+            <div class="course">
+                <img src="imagen/Sopas-tipicas-de-bolivia-480x270.jpg" alt="SOPA DE MANI">
+                <h2>SOPA DE MANI</h2>
+                <p class="price">$20</p>
+                <p class="discount-price">$15</p>
+                <button onclick="addToCart('SOPA DE MANI', 15, 'imagen/Sopas-tipicas-de-bolivia-480x270.jpg')">Agregar al Carrito</button>
+            </div>
+            
+            <div class="course">
+                <img src="imagen/trucha.jpg" alt="TRUCHA">
+                <h2>TRUCHA</h2>
+                <p class="price">$20</p>
+                <p class="discount-price">$30</p>
+                <button onclick="addToCart('TRUCHA', 15, 'imagen/trucha.jpg')">Agregar al Carrito</button>
+            </div>
+        </div>
+    
+        <script>
+            let cart = [];
+    
+            function addToCart(name, price, imgSrc) {
+                const item = cart.find(product => product.name === name);
+                if (item) {
+                    item.quantity += 1;
+                } else {
+                    cart.push({ name, price, imgSrc, quantity: 1 });
+                }
+                updateCart();
+            }
+    
+            function updateCart() {
+                const cartItems = document.getElementById('cart-items');
+                const cartCount = document.getElementById('cart-count');
+                cartItems.innerHTML = `
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Acciones</th>
+                    </tr>`;
+                cart.forEach((item, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><img src="${item.imgSrc}" alt="${item.name}"></td>
+                        <td>${item.name}</td>
+                        <td>$${item.price}</td>
+                        <td>${item.quantity}</td>
+                        <td><button class="cart-btn" onclick="removeFromCart(${index})">Borrar</button></td>
+                    `;
+                    cartItems.appendChild(row);
+                });
+                cartCount.innerText = cart.length;
+            }
+    
+            function removeFromCart(index) {
+                cart.splice(index, 1);
+                updateCart();
+            }
+    
+            function emptyCart() {
+                cart = [];
+                updateCart();
+            }
+    
+            function toggleCart() {
+                const cartModal = document.getElementById('cart-modal');
+                cartModal.style.display = cartModal.style.display === 'none' || cartModal.style.display === '' ? 'block' : 'none';
+            }
+        </script>
+   </section>
+
+</body>
+</html>
+
